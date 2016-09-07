@@ -1,43 +1,71 @@
-# [![Text Mask](assets/logo.png)](https://github.com/text-mask/text-mask/#readme)
+# Angular 2 Input Mask
+This Angular 2 Directive is also compatible with Ionic 2 `ion-input`.
 
-[![Build Status](https://travis-ci.org/text-mask/text-mask.svg?branch=master)](https://travis-ci.org/text-mask/text-mask)
+## Getting started
 
-Text Mask is an input mask library. It can create input masks for phone, date, currency, zip code, percentage, email, 
-and literally anything!
+First, install it.
 
-There are convenient wrappers for React, Angular 2, and Ember. If you would like Text Mask to be available in another
-framework or ecosystem, [email me](mailto:msafi@msafi.com)!
+```bash
+npm i angular2-text-mask --save
+```
 
-## Live demo
+Then, import it into your `@NgModule` and declare it:
 
-See it in action, [check out the demo page](https://text-mask.github.io/text-mask/).
+```typescript
+import {NgModule} from '@angular/core';
+import {FormsModule} from '@angular/forms';
+import MaskedInput from 'angular2-text-mask'
 
-## Installation and usage
+@NgModule({
+  imports: [FormsModule],
+  declarations: [MaskedInput]
+})
+export class TextMaskModule {}
+```
 
-* [React](react#readme)
-* [Angular 2](angular2#readme)
-* [Ember](ember#readme)
-* [Vanilla JS](vanilla#readme)
+Then, use it in your component:
+```typescript
+@Component({
+  selector: 'app',
+  template: `
+    <input [textMask]="{mask: mask}" [(ngModel)]="myModel" type="text"/>
+  `
+})
+export class AppComponent {
+  public myModel = ''
+  public mask = ['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]
+}
+```
 
-## Expected to work with...
+## Documentation
 
-IE9+, Android, Samsung Internet, Windows Phone, iOS, Opera, Firefox, Safari, and Chrome
+As you can see in the code above, you are passing an object to the `textMask` directive.
 
-## Flexible
+&#x1F4CD; For more information about the values that the `textMask` object accepts, see 
+**[this page](https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#readme)**.
 
-Text Mask is very configurable and allows you to create any type of input mask with minimal APIs.
-[See the documentation for details](https://github.com/text-mask/text-mask/blob/master/componentDocumentation.md#readme).
+#### Other use-cases
 
-## Robust
+##### Unmasking the value that is stored in the model
 
-Text Mask supports pasting, browser auto-fill, and all operations that a user would expect while interacting with
-an input field.
+Text Mask does not provide an option to unmask the model before storing it. You can sanitize the model on your
+side. See [here](https://github.com/text-mask/text-mask/issues/109) for details.
 
-It works on mobile, has no 3rd party dependencies, and has a tiny footprint (less than 4KB gzipped).
+## Example
 
-## For any questions, suggestions, or feature requests
+To see an example of the code running, follow these steps:
 
-[Please file an issue](https://github.com/text-mask/text-mask/issues)!
+1. Clone the repo, `git clone git@github.com:text-mask/text-mask.git`
+1. `cd text-mask`
+1. `npm install`
+1. `npm run angular2:dev`
+1. Open [http://localhost:3000](http://localhost:3000)
+
+The code of the example is in [`angular2/example`](https://github.com/text-mask/text-mask/tree/master/angular2/example).
+
+## Contributing
+
+We would love some contributions! Check out [this document](https://github.com/text-mask/text-mask/blob/master/howToContribute.md#readme) to get started.
 
 ## License
 
