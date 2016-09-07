@@ -44,7 +44,7 @@ export default class MaskedInputDirective implements OnInit, ControlValueAccesso
     )
 
     // This ensures that initial model value gets masked
-    setTimeout(() => this.onInput())
+    //setTimeout(() => this.onInput())
   }
 
   writeValue(value: any) {
